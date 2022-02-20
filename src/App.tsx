@@ -13,56 +13,19 @@ const Box = styled(motion.div)`
   width: 200px;
   height: 200px;
   border-radius: 40px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
-`;
-
-const Circle = styled(motion.div)`
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
   background-color: white;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
-  place-self: center;
 `;
 
 const boxVariants = {
-  start: { opacity: 0, scale: 0.5 },
-  end: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      type: "spring",
-      duration: 0.5,
-      bounce: 0.5,
-      delayChildren: 0.5,
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const circleVariants = {
-  start: {
-    opacity: 0,
-    y: 10,
-  },
-  end: {
-    opacity: 1,
-    y: 0,
-  },
+  hover: { scale: 1.5, rotateZ: 180 },
+  click: { scale: 1, borderRadius: "50%" },
 };
 
 function App() {
   return (
     <Wrapper>
-      <Box variants={boxVariants} initial="start" animate="end">
-        <Circle variants={circleVariants} />
-        <Circle variants={circleVariants} />
-        <Circle variants={circleVariants} />
-        <Circle variants={circleVariants} />
-      </Box>
+      <Box drag variants={boxVariants} whileHover="hover" whileTap="click" />
     </Wrapper>
   );
 }
